@@ -22,3 +22,25 @@ julia GD_test_table.jl
 Do not forget to configure the relevant settings in each file before running it.
 
 The numerical experiments code contained in this Git repository was originally tested using Julia 1.5.4 on a computer with the Ubuntu 20.04 LTS operating system installed.
+
+
+# Citation
+If you use this code, please cite the paper:
+
+`Irwin, B., Haber, E. Secant penalized BFGS: a noise robust quasi-Newton method via penalizing the secant condition. 
+*Comput Optim Appl* **84**, 651-702 (2023). https://doi.org/10.1007/s10589-022-00448-x`
+
+BibTeX: 
+```
+@article{irwin-spbfgs-2023,
+    Author = {Brian Irwin and Eldad Haber},
+    Title = {Secant penalized {BFGS}: a noise robust quasi-{N}ewton method via penalizing the secant condition},
+    Journal = {Computational Optimization and Applications},
+    Volume = {84},
+    Pages = {651--702},
+    Year = {2023},
+    DOI = {10.1007/s10589-022-00448-x}
+}
+```
+
+
