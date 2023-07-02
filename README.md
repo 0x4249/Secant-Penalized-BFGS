@@ -27,8 +27,8 @@ The numerical experiments code contained in this Git repository was originally t
 # Citation
 If you use this code, please cite the paper:
 
-`Irwin, B., Haber, E. Secant penalized BFGS: a noise robust quasi-Newton method via penalizing the secant condition. 
-*Comput Optim Appl* **84**, 651-702 (2023). https://doi.org/10.1007/s10589-022-00448-x`
+Irwin, B., Haber, E. Secant penalized BFGS: a noise robust quasi-Newton method via penalizing the secant condition. 
+*Comput Optim Appl* **84**, 651-702 (2023). [https://arxiv.org/abs/2010.01275](https://arxiv.org/abs/2010.01275)
 
 BibTeX: 
 ```
