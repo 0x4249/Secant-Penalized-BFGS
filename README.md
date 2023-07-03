@@ -9,7 +9,7 @@ The secant penalized BFGS update generalizes the well-known BFGS update. The BFG
 ```math
 \mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \frac{\mathbf{s}_k \mathbf{y}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \frac{\mathbf{y}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) + \frac{\mathbf{s}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k}
 ```
-whereas the SP-BFGS update is given by 
+whereas the SP-BFGS update for $\beta_k \in [0, +\infty]$ is given by 
 ```math
 \mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \omega_k \mathbf{s}_k \mathbf{y}_k^{\rm T} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \omega_k \mathbf{y}_k \mathbf{s}_k^{\rm T} \bigg ) + \omega_k \bigg [ \frac{\gamma_k}{\omega_k} + (\gamma_k - \omega_k) \mathbf{y}_k^{\rm T} \mathbf{H}_k \mathbf{y}_k \bigg ] \mathbf{s}_k \mathbf{s}_k^{\rm T}
 ```
