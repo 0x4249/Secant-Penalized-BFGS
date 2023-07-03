@@ -5,8 +5,12 @@ by Brian Irwin and Eldad Haber. The published paper can be found at [https://doi
 
 
 # The SP-BFGS Update
-The secant penalized BFGS update generalizes the well-known BFGS update. The BFGS update is
-$$\mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \frac{\mathbf{s}_k \mathbf{y}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \frac{\mathbf{y}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) + \frac{\mathbf{s}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k}$$.
+The secant penalized BFGS update generalizes the well-known BFGS update. The BFGS update for the inverse Hessian approximation $\mathbf{H}_{k+1}$ is given by
+$$\mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \frac{\mathbf{s}_k \mathbf{y}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \frac{\mathbf{y}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) + \frac{\mathbf{s}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k}$$
+whereas the SP-BFGS update is given by 
+$$\mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \omega_k \mathbf{s}_k \mathbf{y}_k^{\rm T} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \omega_k \mathbf{y}_k \mathbf{s}_k^{\rm T} \bigg ) + \omega_k \bigg [ \frac{\gamma_k}{\omega_k} + (\gamma_k - \omega_k) \mathbf{y}_k^{\rm T} \mathbf{H}_k \mathbf{y}_k \bigg ] \mathbf{s}_k \mathbf{s}_k^{\rm T}$$
+with 
+$$\gamma_k = \frac{1}{(\mathbf{s}_k^{\rm T} \mathbf{y}_k + \frac{1}{\beta_k})} \text{ , } \quad \omega_k = \frac{1}{(\mathbf{s}_k^{\rm T} \mathbf{y}_k + \frac{2}{\beta_k})} \text{ . }$$
 
 
 
