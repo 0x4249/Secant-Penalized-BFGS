@@ -4,6 +4,12 @@ This Git repository contains the Julia code for running the numerical experiment
 by Brian Irwin and Eldad Haber. The published paper can be found at [https://doi.org/10.1007/s10589-022-00448-x](https://doi.org/10.1007/s10589-022-00448-x) and a preprint can be found at [https://arxiv.org/abs/2010.01275](https://arxiv.org/abs/2010.01275). 
 
 
+# The SP-BFGS Update
+The secant penalized BFGS update generalizes the well-known BFGS update. Recall that if one defines $\rho_{k} = 1/\mathbf{s}_{k}^{\rm T} \mathbf{y}_{k}$, the BFGS update is
+$$\mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \rho_k \mathbf{s}_k \mathbf{y}_k^{\rm T} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \rho_k \mathbf{y}_k \mathbf{s}_k^{\rm T} \bigg ) + \rho_k \mathbf{s}_k \mathbf{s}_k^{\rm T}$$.
+
+
+
 # Running The Code
 To run the quadratic function experiments from Section 6.1 of the published paper, execute the files:
 ```
