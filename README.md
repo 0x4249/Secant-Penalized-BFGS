@@ -22,7 +22,7 @@ If $`\mathbf{H}_{k}`$ is positive definite, then the $`\mathbf{H}_{k+1}`$ given 
 ```math
 \mathbf{s}_k^{\rm T} \mathbf{y}_k > - \frac{1}{\beta_k} 
 ```
-is satisfied. BFGS is equivalent to SP-BFGS with $`\beta_k = +\infty`$. 
+is satisfied. BFGS is equivalent to SP-BFGS with $`\beta_k = +\infty`$. See the paper for more information.
 
 
 # Running The Code
