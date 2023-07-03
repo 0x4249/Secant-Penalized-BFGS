@@ -6,7 +6,7 @@ by Brian Irwin and Eldad Haber. The published paper can be found at [https://doi
 
 # The SP-BFGS Update
 The secant penalized BFGS update generalizes the well-known BFGS update. The BFGS update is
-$$\mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \rho_k \mathbf{s}_k \mathbf{y}_k^{\rm T} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \rho_k \mathbf{y}_k \mathbf{s}_k^{\rm T} \bigg ) + \rho_k \mathbf{s}_k \mathbf{s}_k^{\rm T}, \quad \rho_{k} = 1/\mathbf{s}_{k}^{\rm T} \mathbf{y}_{k}$$.
+$$\mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \frac{\mathbf{s}_k \mathbf{y}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \frac{\mathbf{y}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) + \frac{\mathbf{s}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k}$$.
 
 
 
