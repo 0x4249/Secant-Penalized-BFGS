@@ -81,7 +81,7 @@ for r in 1:total_runs
 
 		f_new = objFun.func_eval(x)
 		g_new = objFun.grad_eval(x)
-
+		
 		# Backtracking line search
 		line_search_fail = 0
 		while f_new > f_old + c_1*alpha*dot(g_old,p) + 2*noise_tol
@@ -93,7 +93,7 @@ for r in 1:total_runs
 		  end
 		  x = x_old + alpha*p		 
 		  f_new = objFun.func_eval(x)
-	      g_new = objFun.grad_eval(x)
+	      	  g_new = objFun.grad_eval(x)
 		end
 		line_search_fail_count += line_search_fail
 		line_search_fails[i] = line_search_fail
@@ -103,10 +103,10 @@ for r in 1:total_runs
 		s_k = x - x_old
 		y_k = g_new - g_old
 		y_k_dot_s_k = dot(s_k,y_k)
-
+		
 		# Set penalty parameter
-        beta_k = norm(s_k)/epsilon_g + 1e-10
-
+        	beta_k = norm(s_k)/epsilon_g + 1e-10
+		
 		# Check penalized curvature condition
 		if y_k_dot_s_k > -1/beta_k
 			betas[i] = beta_k
@@ -115,12 +115,12 @@ for r in 1:total_runs
 			gamma_k = 1/(y_k_dot_s_k+1/beta_k)
 			omega_k = 1/(y_k_dot_s_k+2/beta_k)
 			@show omega_k, gamma_k
-
+			
 			Hy = H*y_k
 			y_H_y = dot(y_k,Hy)
 			D_1 = gamma_k/omega_k
-		    D_2 = (gamma_k - omega_k)*y_H_y
-
+		    	D_2 = (gamma_k - omega_k)*y_H_y
+			
 			H = (I - omega_k*s_k*y_k')*H*(I - omega_k*y_k*s_k') + omega_k*(D_1 + D_2)*s_k*s_k'
 		else 
 		    @printf("Curvature condition failed!\n")
