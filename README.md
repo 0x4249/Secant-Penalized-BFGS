@@ -4,8 +4,8 @@ This Git repository contains the Julia code for running the numerical experiment
 by Brian Irwin and Eldad Haber. The published paper can be found at [https://doi.org/10.1007/s10589-022-00448-x](https://doi.org/10.1007/s10589-022-00448-x) and a preprint can be found at [https://arxiv.org/abs/2010.01275](https://arxiv.org/abs/2010.01275). 
 
 
-# The SP-BFGS Update
-The secant penalized BFGS update generalizes the well-known BFGS update. The BFGS update for the inverse Hessian approximation $\mathbf{H}_{k+1}$ is given by
+# Summary Of The SP-BFGS Update
+The secant penalized BFGS update *generalizes* the well-known BFGS update. The BFGS update for the inverse Hessian approximation $\mathbf{H}_{k+1}$ is given by
 ```math
 \mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \frac{\mathbf{s}_k \mathbf{y}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \frac{\mathbf{y}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) + \frac{\mathbf{s}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k}
 ```
@@ -18,6 +18,11 @@ with
 \gamma_k = \frac{1}{(\mathbf{s}_k^{\rm T} \mathbf{y}_k + \frac{1}{\beta_k})} \text{ , } \quad \omega_k = \frac{1}{(\mathbf{s}_k^{\rm T} \mathbf{y}_k + \frac{2}{\beta_k})} \text{ . }
 ```
 
+If $\mathbf{H}_{k}$ is positive definite, then the $\mathbf{H}_{k+1}$ given by the SP-BFGS update is positive definite if and only if the SP-BFGS curvature condition
+```math
+\mathbf{s}_k^{\rm T} \mathbf{y}_k > - \frac{1}{\beta_k} 
+```
+is satisfied. BFGS is equivalent to SP-BFGS with $\beta_k = +\infty$. 
 
 
 # Running The Code
