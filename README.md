@@ -5,11 +5,11 @@ by Brian Irwin and Eldad Haber. The published paper can be found at [https://doi
 
 
 # Summary Of The SP-BFGS Update
-The secant penalized BFGS update *generalizes* the well-known BFGS update. The BFGS update for the inverse Hessian approximation $\mathbf{H}_{k+1}$ is given by
+The secant penalized BFGS update *generalizes* the well-known BFGS update. The BFGS update for the inverse Hessian approximation $`\mathbf{H}_{k+1}`$ is given by
 ```math
 \mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \frac{\mathbf{s}_k \mathbf{y}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \frac{\mathbf{y}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k} \bigg ) + \frac{\mathbf{s}_k \mathbf{s}_k^{\rm T}}{\mathbf{s}_k^{\rm T} \mathbf{y}_k}
 ```
-whereas the SP-BFGS update for $\beta_k \in [0, +\infty]$ is given by 
+whereas the SP-BFGS update for $`\beta_k \in [0, +\infty]`$ is given by 
 ```math
 \mathbf{H}_{k+1} = \bigg ( \mathbf{I} - \omega_k \mathbf{s}_k \mathbf{y}_k^{\rm T} \bigg ) \mathbf{H}_k \bigg ( \mathbf{I} - \omega_k \mathbf{y}_k \mathbf{s}_k^{\rm T} \bigg ) + \omega_k \bigg [ \frac{\gamma_k}{\omega_k} + (\gamma_k - \omega_k) \mathbf{y}_k^{\rm T} \mathbf{H}_k \mathbf{y}_k \bigg ] \mathbf{s}_k \mathbf{s}_k^{\rm T}
 ```
@@ -18,11 +18,11 @@ with
 \gamma_k = \frac{1}{(\mathbf{s}_k^{\rm T} \mathbf{y}_k + \frac{1}{\beta_k})} \text{ , } \quad \omega_k = \frac{1}{(\mathbf{s}_k^{\rm T} \mathbf{y}_k + \frac{2}{\beta_k})} \text{ . }
 ```
 
-If $\mathbf{H}_{k}$ is positive definite, then the $\mathbf{H}_{k+1}$ given by the SP-BFGS update is positive definite if and only if the SP-BFGS curvature condition
+If $`\mathbf{H}_{k}`$ is positive definite, then the $`\mathbf{H}_{k+1}`$ given by the SP-BFGS update is positive definite if and only if the SP-BFGS curvature condition
 ```math
 \mathbf{s}_k^{\rm T} \mathbf{y}_k > - \frac{1}{\beta_k} 
 ```
-is satisfied. BFGS is equivalent to SP-BFGS with $\beta_k = +\infty$. 
+is satisfied. BFGS is equivalent to SP-BFGS with $`\beta_k = +\infty`$. 
 
 
 # Running The Code
