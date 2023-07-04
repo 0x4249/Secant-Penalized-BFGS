@@ -37,7 +37,7 @@ iter_counts = zeros(total_runs)
 # Repeated algorithm runs
 for r in 1:total_runs
 	global max_obj_fun_evals, iter_counts, best_true_obj_vals
-
+	
 	# Optimization setup
 	x_0 = nlp.meta.x0
 	
@@ -47,16 +47,16 @@ for r in 1:total_runs
 	tau = 0.5
 	noise_tol = epsilon_f
 	max_backtracks = 45
-
+	
 	# Termination parameters
 	termination_eps = 0
-
+	
 	# Allocate storage
 	line_search_fail_count = 0
 	obj_fun_eval_count = 0
 	best_true_obj_val = Inf
 	iter_count = 0
-
+	
 	# Gradient Descent Loop
 	x = x_0
 	f_old = Inf
@@ -66,7 +66,7 @@ for r in 1:total_runs
 	while obj_fun_eval_count < max_obj_fun_evals
 		iter_count += 1
 		alpha = alpha_0
-
+		
 		# Initial noisy function and gradient evalutions
 		if obj_fun_eval_count == 0
 			f_old = objFun.func_eval(x)
@@ -74,52 +74,52 @@ for r in 1:total_runs
 			g_old = objFun.grad_eval(x)
 			obj_fun_eval_count += 1
 		end
-
+		
 		x_old = x
 		p = -g_old
 		x = x_old + alpha*p
-
+		
 		f_new = objFun.func_eval(x)
 		f_new_true = objFunTrue.func_eval(x)
 		g_new = objFun.grad_eval(x)
 		obj_fun_eval_count += 1
-
+		
 		# Backtracking line search
 		line_search_fail = 0
 		while f_new > f_old + c_1*alpha*dot(g_old,p) + 2*noise_tol && obj_fun_eval_count < max_obj_fun_evals
-		  line_search_fail +=1
-		  if line_search_fail > max_backtracks
-		  	  alpha = 0
-		  else
-			  alpha = tau*alpha
-		  end
-		  x = x_old + alpha*p		 
-		  f_new = objFun.func_eval(x)
-		  f_new_true = objFunTrue.func_eval(x)
-	      g_new = objFun.grad_eval(x)
-	      obj_fun_eval_count += 1	      
+			line_search_fail +=1
+		  	if line_search_fail > max_backtracks
+		  		alpha = 0
+		  	else
+				alpha = tau*alpha
+		  	end
+		  	x = x_old + alpha*p		 
+		  	f_new = objFun.func_eval(x)
+		  	f_new_true = objFunTrue.func_eval(x)
+	      		g_new = objFun.grad_eval(x)
+	      		obj_fun_eval_count += 1	      
 		end
 		line_search_fail_count += line_search_fail
-
+		
 		@show(line_search_fail)
 		#@show(i,x,f_old,f_new)
 		@show(obj_fun_eval_count,f_old,f_new)
 		@show norm(objFunTrue.grad_eval(x))
-
+		
 		if norm(g_new) <= termination_eps
 			@printf("Terminated within tolerance after %d iterations\n", i)
 			break
 		end
-
+		
 		best_true_obj_val = min(f_old_true,f_new_true,best_true_obj_val)
 		f_old = f_new
 		f_old_true = f_new_true
 		g_old = g_new
 		@show r
 	end
-
+	
 	@show(line_search_fail_count)
-
+	
 	best_true_obj_vals[r] = best_true_obj_val
 	line_search_fail_counts[r] = line_search_fail_count
 	iter_counts[r] = iter_count
