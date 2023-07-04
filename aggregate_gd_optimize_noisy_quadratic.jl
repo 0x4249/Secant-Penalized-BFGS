@@ -33,20 +33,20 @@ color_map = get_cmap("twilight_shifted", total_runs)
 # Repeated algorithm runs
 for r in 1:total_runs
 	global all_f_vals, all_x_vals, all_line_search_fails, all_alphas, maxIter
-
+	
 	# Optimization setup
 	x_0 = 1e5.*[1;1;1;1]
-
+	
 	# Backtracking line search parameters
 	alpha_0 = 1
 	c_1 = 1e-4
 	tau = 0.5
 	noise_tol = 0
 	max_backtracks = 75
-
+	
 	# Termination parameters
 	termination_eps = 1e-5
-
+	
 	# Allocate storage
 	line_search_fail_count = 0
 	f_vals = zeros(maxIter)
@@ -54,53 +54,53 @@ for r in 1:total_runs
 	scaled_hess_cond_vals = zeros(maxIter)
 	line_search_fails = zeros(maxIter)
 	alphas = zeros(maxIter)
-
+	
 	# Gradient Descent Loop
 	x = x_0
 	f_old = 0 
 	g_old = [0; 0]
-
+	
 	for i in 1:maxIter
 		alpha = alpha_0
-
+		
 		# Initial noisy function and gradient evalutions
 		if i == 1
 			f_old = objFun.func_eval(x)
 			g_old = objFun.grad_eval(x)
 		end
-
+		
 		x_old = x
 		p = -g_old
 		x = x_old + alpha*p
-
+		
 		f_new = objFun.func_eval(x)
 		g_new = objFun.grad_eval(x)
-
+		
 		# Backtracking line search
 		line_search_fail = 0
 		while f_new > f_old + c_1*alpha*dot(g_old,p) + 2*noise_tol
-		  line_search_fail +=1
-		  if line_search_fail > max_backtracks
-		  	  alpha = 0
-		  else
-			  alpha = tau*alpha
-		  end
-		  x = x_old + alpha*p		 
-		  f_new = objFun.func_eval(x)
-	      	  g_new = objFun.grad_eval(x)
+			line_search_fail +=1
+		  	if line_search_fail > max_backtracks
+		  		alpha = 0
+		  	else
+				alpha = tau*alpha
+		  	end
+			x = x_old + alpha*p		 
+		  	f_new = objFun.func_eval(x)
+	      	  	g_new = objFun.grad_eval(x)
 		end
 		line_search_fail_count += line_search_fail
 		line_search_fails[i] = line_search_fail
 		alphas[i] = alpha
-
+		
 		@show(line_search_fail)
 		@show(i,x,f_old,f_new)
-
+		
 		if norm(g_new) <= termination_eps
 			@printf("Terminated within tolerance after %d iterations\n", i)
 			break
 		end
-
+		
 		f_vals[i] = f_new
 		x_vals[i,:] = x
 		scaled_hess_cond_vals[i] = cond(objFun.hess_eval(x))
@@ -108,17 +108,17 @@ for r in 1:total_runs
 		g_old = g_new
 		@show r
 	end		
-
+	
 	@show(line_search_fail_count)
 	@show(objFun.hess_eval(x))
-
+	
 	line_search_fail_counts[r] = line_search_fail_count
 	all_f_vals[:,r] = f_vals
 	all_x_vals[:,:,r] = x_vals
 	all_scaled_hess_cond_vals[:,r] = scaled_hess_cond_vals
 	all_line_search_fails[:,r] = line_search_fails
 	all_alphas[:,r] = alphas
-
+	
 end
 
 # Optimality gap figure
