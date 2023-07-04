@@ -87,7 +87,7 @@ for r in 1:total_runs
 		  end
 		  x = x_old + alpha*p		 
 		  f_new = objFun.func_eval(x)
-	      g_new = objFun.grad_eval(x)
+	      	  g_new = objFun.grad_eval(x)
 		end
 		line_search_fail_count += line_search_fail
 		line_search_fails[i] = line_search_fail
