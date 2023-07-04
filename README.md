@@ -26,21 +26,33 @@ is satisfied. BFGS is equivalent to SP-BFGS with $`\beta_k = +\infty`$. See the 
 
 
 # Running The Code
-To run the quadratic function experiments from Section 6.1 of the published paper, execute the files:
+To run the quadratic function experiments from Section 6.1 of the published paper, execute the files via Julia REPL:
+```
+include("aggregate_spbfgs_optimize_noisy_quadratic.jl")
+include("aggregate_bfgs_optimize_noisy_quadratic.jl")
+include("aggregate_gd_optimize_noisy_quadratic.jl ")
+```
+or via terminal:
 ```
 julia aggregate_spbfgs_optimize_noisy_quadratic.jl 
 julia aggregate_bfgs_optimize_noisy_quadratic.jl
 julia aggregate_gd_optimize_noisy_quadratic.jl 
 ```
 
-To run the CUTEst experiments from Section 6.2 of the published paper, execute the files:
+To run the CUTEst experiments from Section 6.2 of the published paper, execute the files via Julia REPL:
+```
+include("SPBFGS_test_table.jl")
+include("BFGS_test_table.jl")
+include("GD_test_table.jl")
+```
+or via terminal:
 ```
 julia SPBFGS_test_table.jl
 julia BFGS_test_table.jl
 julia GD_test_table.jl
 ```
 
-Do not forget to configure the relevant settings in each file before running it.
+Do *not* forget to configure the relevant settings in each file before running it.
 
 The numerical experiments code contained in this Git repository was originally tested using Julia 1.5.4 on a computer with the Ubuntu 20.04 LTS operating system installed.
 
