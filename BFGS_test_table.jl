@@ -100,8 +100,8 @@ for r in 1:total_runs
 		  	x = x_old + alpha*p		 
 		  	f_new = objFun.func_eval(x)
 		  	f_new_true = objFunTrue.func_eval(x)
-	      		g_new = objFun.grad_eval(x)
-	      		obj_fun_eval_count += 1	      
+		  	g_new = objFun.grad_eval(x)
+		  	obj_fun_eval_count += 1	      
 		end
 		line_search_fail_count += line_search_fail
 		
@@ -115,8 +115,8 @@ for r in 1:total_runs
 			rho_k = 1/y_k_dot_s_k
 			H = (I - rho_k*s_k*y_k')*H*(I - rho_k*y_k*s_k') + rho_k*s_k*s_k'
 		else
-		    	@printf("Curvature condition failed!\n")
-		    	curv_fail_count += 1
+			@printf("Curvature condition failed!\n")
+			curv_fail_count += 1
 		end
 		
 		@show(line_search_fail)
